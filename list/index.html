@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Api</title>  
+</head>
+<body>
+    <div id="app" class="contener  p-5 "> 
+        <div class="row">
+            <img class="img " :src="user.img"  >
+            {{user.firstName}} {{user.lastName}}
+        </div>
+        <br>
+        <div class="row mx-auto">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Foto</th> 
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">País</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Opción</th>
+                    </tr>
+                </thead>
+                <tbody v-for="(item, index) of users">
+                    <tr v-if="item.login.username != user.username && item.login.password != this.password">
+                        <th scope="row">{{index}}</th>
+                        <td>
+                            <img class="card-img-top" :src="item.picture.large" alt="20px">
+                        </td>
+                        <td>{{item.name.first}} {{item.name.last}}</td>
+                        <td> {{item.registered.age}} </td>
+                        <td> {{item.location.country}} </td>
+                        <td> {{item.email}} </td>
+                        <td> {{item.phone}} </td>
+                        <td> {{item.cell}} </td>
+                        <td> <button class="btn btn-danger" @click="eliminar(index)">Delete</button> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>  
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="index.js"></script>
+</html>
+ 

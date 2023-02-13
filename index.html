@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Api</title>  
+</head>
+<body>
+    <div id="app" class="contener  p-5 "> 
+         
+        <div class="col mx-auto">
+            <div class="card">
+                <div class="row">
+                    <span>Correo:</span>
+                    <input type="text" placeholder="username" v-model="username" >
+                </div>
+                <div class="row">
+                    <span>Password:</span>
+                    <input type="password" placeholder="*******" v-model="password">
+
+                </div>
+                <div v-if="error" class="row">
+                    {{mensaje}}
+                </div>
+                <div class="row"> 
+                    <button class="btn btn-info" @click="ingresar()">ingresar</button>
+                </div>
+            </div>
+        </div>  
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="index.js"></script>
+</html>
+ 
