@@ -27,6 +27,33 @@
                         {{user.firstName}} {{user.lastName}}
                     </div>
                 </div>
+                
+                <div class="col-12">
+                    <div class="row">
+
+                        <div class="col col-3 m-4">
+                            <label class="form-label" for="typeEmailX-2">Género</label>
+                            <select class="form-control form-control-lg " v-model="genero">
+                                <option value="all">All</option>
+                                <option value="male">Male</option>
+                                <option value="female">Famale</option>
+                              </select>
+                        </div>
+
+                        <div class="col col-4 mt-4">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="typeEmailX-2">Cantidad</label>
+                                <input placeholder="cantidad" v-model="cant"
+                                    type="number"  class="form-control form-control-lg" />
+                                    
+                                </div>
+                                
+                            </div>
+                            <button class="btn btn-info btn-sm my-5 py-3" @clicK="filtrar()"> Filtrar</button>
+                        </div>
+                        
+
+                </div>
             </div>
                      
             <br>

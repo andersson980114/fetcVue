@@ -13,7 +13,9 @@ const app = new Vue({
             this.users.map((user, index) => {   
                     if(user.username === this.username && user.password === this.password){
                         localStorage.setItem('user', JSON.stringify(
-                            {'username':this.username, 
+                            {
+                            'id': index,
+                            'username':this.username, 
                             'password:': this.password,
                             'img': user.foto,
                             'firstName': user.firtsName,
@@ -46,6 +48,7 @@ const app = new Vue({
         fetch('https://randomuser.me/api/?results=10')
         .then((response) => response.json())
         .then((data) => { 
+            console.log(data.results)
             data.results.map(user => { 
                 this.users.push(
                     {
@@ -57,6 +60,7 @@ const app = new Vue({
                         'email': user.email,
                         'telefono': user.phone,
                         'celular': user.cell,
+                        'genero': user.gender,
                         'username':user.login.username,
                         'password':user.login.password,
                         
