@@ -1,7 +1,7 @@
 const app = new Vue({
     el: '#app',
     data:{
-      users: undefined,  
+      users: [],  
       username: undefined,
       password: undefined,
       mensaje: undefined,
@@ -10,26 +10,34 @@ const app = new Vue({
     },
     methods:{
         ingresar(){
-            this.users.map((user, index) => { 
-                    if(user.login.username === this.username && user.login.password === this.password){
+            this.users.map((user, index) => {   
+                    if(user.username === this.username && user.password === this.password){
                         localStorage.setItem('user', JSON.stringify(
                             {'username':this.username, 
                             'password:': this.password,
-                            'img': user.picture.thumbnail,
-                            'firstName': user.name.first,
-                            "lastName": user.name.last 
+                            'img': user.foto,
+                            'firstName': user.firtsName,
+                            "lastName": user.lastName 
                             }
                         ))
-                        window.location = "./list/index.html";
+                        
                         this.logueo = true
                         this.error=false
-                    } 
+                    
+                    }  
                 }
-            )
+            ) 
+            localStorage.setItem('usuarios', JSON.stringify(this.users))
             if(this.logueo===false){
                 this.error = true
                 this.mensaje = "Username o password incorrectos"
+            }else{
+                window.location = "./list/index.html";
             }
+        },
+        Remember(){
+            this.username = this.users[0].username
+            this.password =  this.users[0].password
         }
       
     },
@@ -37,9 +45,23 @@ const app = new Vue({
 
         fetch('https://randomuser.me/api/?results=10')
         .then((response) => response.json())
-        .then((data) => {
-            this.users = data.results
-            data.results.map(user => {
+        .then((data) => { 
+            data.results.map(user => { 
+                this.users.push(
+                    {
+                        'foto': user.picture.large,
+                        'firtsName': user.name.first,
+                        'lastName': user.name.last,
+                        'edad': user.registered.age,
+                        'Pais': 'https://countryflagsapi.com/png/'+user.location.country,
+                        'email': user.email,
+                        'telefono': user.phone,
+                        'celular': user.cell,
+                        'username':user.login.username,
+                        'password':user.login.password,
+                        
+                    }
+                )
                 console.log( "username:", user.login.username)
                 console.log( "Password:",user.login.password)
                 

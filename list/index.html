@@ -5,47 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Api</title>  
+    <title>Api User</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-<body>
+<body style="background-color: #205368;">
     <div id="app" class="contener  p-5 "> 
-        <div class="row">
-            <img class="img " :src="user.img"  >
-            {{user.firstName}} {{user.lastName}}
+        <div  style="background-color: #cfd2d4;" class="rounded">
+            <div class="row justify-content-end pt-3  px-3" >
+                <button class="btn btn-danger mx-3 px-3" @click="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>  
+
+            </div>
+            <div class="row justify-content-center pt-3" >
+                <div class="col-2 ">
+                    <div class="row">
+                        <img class="border border-dark " :src="user.img"  >
+    
+                    </div>
+                    <div class="row">
+                        {{user.firstName}} {{user.lastName}}
+                    </div>
+                </div>
+            </div>
+                     
+            <br>
+            <div class="p-3 ">
+                <div class="row mx-auto " style="background-color: #ffffff;">
+                    <table class="table table-striped text-center  ">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Foto</th> 
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(item, index) of users">
+                            <tr v-if="item.username != user.username && item.password != this.password">
+                                <th scope="row">{{index}}</th>
+                                <td>
+                                    <img class="card-img-top" :src="item.foto" alt="20px">
+                                </td>
+                                <td>{{item.firstName}} {{item.lastName}}</td>
+                                <td> {{item.edad}} </td>
+                                <td> 
+                                    <img class="card-img-top" :src="item.Pais" :alt="item.Pais" class="rounded img-thumbnail" crossorigin="anonymous">
+                                    
+                                </td>
+                                <td> {{item.email}} </td>
+                                <td> {{item.telefono}} </td>
+                                <td> {{item.celular}} </td>
+                                <td> <button class="btn btn-danger" @click="eliminar(index)">Delete</button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+
         </div>
-        <br>
-        <div class="row mx-auto">
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Foto</th> 
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">País</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Celular</th>
-                    <th scope="col">Opción</th>
-                    </tr>
-                </thead>
-                <tbody v-for="(item, index) of users">
-                    <tr v-if="item.login.username != user.username && item.login.password != this.password">
-                        <th scope="row">{{index}}</th>
-                        <td>
-                            <img class="card-img-top" :src="item.picture.large" alt="20px">
-                        </td>
-                        <td>{{item.name.first}} {{item.name.last}}</td>
-                        <td> {{item.registered.age}} </td>
-                        <td> {{item.location.country}} </td>
-                        <td> {{item.email}} </td>
-                        <td> {{item.phone}} </td>
-                        <td> {{item.cell}} </td>
-                        <td> <button class="btn btn-danger" @click="eliminar(index)">Delete</button> </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>  
     </div>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
