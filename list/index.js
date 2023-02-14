@@ -25,11 +25,9 @@ const app = new Vue({
           }
 
           if(this.cant > 0){
-            if(this.cant > this.user.id){
-              this.users.splice(this.cant, this.users.length - (this.cant+2))
-            }else{
+              this.users.splice(this.user.id, 1)
               this.users.splice(this.cant, this.users.length - this.cant)
-            }
+             
           }
 
          }
