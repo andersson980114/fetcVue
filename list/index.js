@@ -11,6 +11,7 @@ const app = new Vue({
         eliminar(index){
             console.log(index)
             this.users.splice(index, 1)
+            localStorage.setItem('usuarios', JSON.stringify(this.users))
          },
          logout(){
             window.location = "../index.html";
