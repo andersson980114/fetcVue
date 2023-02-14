@@ -9,9 +9,20 @@ const app = new Vue({
     },
     methods:{
         eliminar(index){
-            console.log(index)
-            this.users.splice(index, 1)
+            this.filtro= []
+            let use = this.users[index]
+            this.users = JSON.parse(localStorage.getItem('usuarios'))
+            this.users.map(user => {
+            console.log()
+            if(user.username != use.username){
+              
+              this.filtro.push(user)
+              }
+            })
+            this.users = this.filtro
             localStorage.setItem('usuarios', JSON.stringify(this.users))
+            this.filtrar()
+
          },
          logout(){
             window.location = "../index.html";
@@ -28,7 +39,7 @@ const app = new Vue({
           if(this.cant > 0){
               this.users.splice(this.user.id, 1)
               this.users.splice(this.cant, this.users.length - this.cant)
-             
+              this.filtro  = this.users
           }
 
          }
